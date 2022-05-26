@@ -1,0 +1,72 @@
+# from django.conf import settings
+# from flask import Flask, request
+# app = Flask(__name__)
+# from telebot.credentials import bot_token, bot_user_name, URL
+# import telegram
+
+# @bot.message_handler(commands=['start'])
+# def start(message):
+#     mess = f'Привет, <b>{message.from_user.first_name} <u>{message.from_user.last_name}</u></b>'
+
+#     # markup = types.InlineKeyboardMarkup(row_width=1)
+#     # list_p = types.InlineKeyboardButton(text='Список покупок', callback_data = 'list')
+#     # edit_list = types.InlineKeyboardButton(text='Редактировать список', callback_data = 'edit')
+#     # help = types.InlineKeyboardButton(text='Помощь', callback_data = 'help')
+#     # settings = types.InlineKeyboardButton(text='Настройки', callback_data = 'settings')
+#     # users = types.InlineKeyboardButton(text='Настройки', callback_data = 'users')
+
+#     # markup.add(list_p, edit_list, help, settings, users)
+#     # bot.send_message(message.chat.id, mess + '\nНажми кнопку ниже',  parse_mode='html', reply_markup=markup)
+#     bot.send_message(message.chat.id, mess,  parse_mode='html')
+
+
+
+# @bot.callback_query_handler(func=lambda call: True)
+# def answer(call):
+#     bot.answer_callback_query(callback_query_id=call.id)
+#     if call.data == 'list':
+#         markup = types.InlineKeyboardMarkup(row_width=1)
+#         edit_list = types.InlineKeyboardButton(text='Редактировать список', callback_data = 'edit')
+#         exit = types.InlineKeyboardButton(text='В главное меню', callback_data = 'exit')
+
+#         bot.send_message(call.message.chat.id,'Здесь должен быть твой список', reply_markup=markup)
+#         markup.add(edit_list, exit)
+#     elif call.data == 'edit':
+#         pass
+#     elif call.data == 'help':
+#         pass
+#     elif call.data == 'settings':
+#         pass
+
+# @bot.message_handler(content_types = ['text'])
+# def get_text(message):
+#     mess = f'Здесь должен быть твой список'
+
+#     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+#     start = types.KeyboardButton('Редактировать список')
+#     settings = types.KeyboardButton('Назад')
+#     markup.add(start, settings)
+#     bot.send_message(message.chat.id,'Нажми кнопку ниже', reply_markup=markup)
+
+# @bot.message_handler()
+# def get_user_text(message):
+#     if message.text == "Hello":
+#         bot.send_message(message.chat.id, 'И тебе хеллоу', parse_mode='html')
+#     elif message.text == 'id':
+#         bot.send_message(message.chat.id, f'Твой ID: {message.from_user.id}', parse_mode='html')
+#     elif message.text == 'photo':
+#         photo = open('icon.png', 'rb')
+#         bot.send_photo(message.chat.id, photo)
+#     else:
+#         bot.send_message(message.chat.id, 'К сожалению, я больше ничего не умею :(', parse_mode='html')
+
+# @bot.message_handler(content_types=['photo'])
+# def get_user_photo(message):
+#     bot.send_message(message.chat.id,'Вау, крутая фотка')
+
+# @bot.message_handler(commands=['website'])
+# def website(message):
+#     markup = types.InlineKeyboardMarkup()
+#     markup.add(types.InlineKeyboardButton("Посеитить веб сайт", url="www.google.com"))
+#     bot.send_message(message.chat.id,'Нажми кнопку', reply_markup=markup)
+
